@@ -11,6 +11,7 @@ An advanced Retrieval Augmented Generation (RAG) system that uses a graph-based 
 - **Dual Interfaces**:
   - **CLI**: Simple command-line tools for ingestion and querying.
   - **Web UI**: A user-friendly Streamlit interface.
+  - **API**: A robust FastAPI backend for serving the agent.
 
 ## Prerequisites
 
@@ -62,21 +63,32 @@ You can also upload files directly through the Streamlit UI.
 
 ### 2. Run the Application
 
-**Command Line Interface (CLI):**
-Ask a question directly from the terminal:
+**Option A: Command Line Interface (CLI)**
+Ask a question directly from the terminal (no server required):
 ```bash
 python main.py query "What are the risks mentioned in the document?"
 ```
 
-**Web User Interface (Streamlit):**
-Launch the interactive web app:
-```bash
-streamlit run ui.py
-```
+**Option B: Web User Interface (Streamlit)**
+To use the web UI, you must run the backend API server first.
+
+1.  **Start the Backend API:**
+    Open a terminal and run:
+    ```bash
+    python api.py
+    ```
+    The API will start at `http://localhost:8000`.
+
+2.  **Start the Frontend UI:**
+    Open a *new* terminal window and run:
+    ```bash
+    streamlit run ui.py
+    ```
 
 ## Project Structure
 
 - **`main.py`**: Entry point for CLI commands (ingest, query).
+- **`api.py`**: FastAPI backend server.
 - **`ui.py`**: Streamlit application for the web interface.
 - **`agent/`**: Contains the core agent logic.
     - `graph.py`: Defines the LangGraph workflow.
